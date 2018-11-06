@@ -1,0 +1,52 @@
+<apex:page controller="InfProd">
+<apex:slds />
+   <style>
+       .header,.footer{
+           
+           width:100%;
+           background-color:lightBlue;
+           font-size:20px;
+           height:35px;
+           text-align:center;
+           min-height:25px
+            }
+        .content{
+            width:100%;
+            background-color: white;
+            border:none;
+            text-align:left;
+            min-height:450px;
+            }
+         #img{
+             float:left;
+             width:50%;
+             margin:0 auto;
+         }
+         #inf{
+             float:right;
+             width:50%;
+         }
+   </style>
+   <apex:form >
+   <div class="header">{!product.Name}</div> 
+   <apex:pageBlock >
+   <div class="content">
+   
+   <div class="content" id="cont" >
+        <div class="content" id="img">
+             <apex:image value="{!product.Image_URL__c}" width="400px" height="400px"/>
+         </div>
+         <div class="content" id="inf">
+             AMOUNT:<br/>{!product.Units_Availble__c}
+             <br/><br/>TITLE<br/>{!product.chrct__c}<br/><br/>DESCRIPTION<br/>
+             {!product.Product_Description__c}
+        </div>
+    </div>
+    </div>
+    </apex:pageBlock>
+        <div class="footer">
+       <apex:commandButton action="{!back}" styleClass="slds-button slds-button_neutral" value="ToShopping"/>
+       <apex:commandButton action="{!setParams}" styleClass="slds-button slds-button--brand" value="Buy"/>
+        </div>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,108 @@
+<apex:page controller="InfProd">
+<apex:slds />
+
+<style>
+    .info{
+        width:100%;
+        background-color: lightBlue;
+        border:solid,1px,blue;
+        text-align:center;
+        font-size:20px;
+    }
+    .footer{
+        width:100%;
+        background-color: lightBlue;
+        border:solid,1px,blue;
+        text-align:center;
+        font-size:10px;
+        
+    }
+    .con,#cont,.back{
+        float:left;
+        width:50%;
+        border-right: none;
+        
+    }
+    .prod,#product,.buy{
+        float:right;
+        width:50%;
+        border-left: none;
+        
+    }
+    .content{
+        width:100%;
+        background-color: white;
+        border:none;
+        text-align:center;
+        min-height:150px;
+    }
+    #email,#fn,#ln{
+    }
+    .table {
+        display: table;
+        margin:0 auto;
+    }
+    .table .row {
+        display: table-row;
+    }
+    .table .row .cell {
+        min-width: 80px;
+        display: table-cell;
+        padding:5px;
+    }
+</style>
+<apex:form id="buyform">
+    <apex:pageMessages id="message"/>
+    <div class="info">
+        <div class="info con">Contact Information</div>
+        <div class="info prod">Product Information</div>
+    </div>
+<apex:pageBlock >
+    <div class="content">
+        <div class="content" id="cont" >
+        <div class="table">
+        <div class="row">
+            <div class="cell"><label for="email">Email </label></div>
+            <div class="cell"><apex:inputText id="email" styleClass="slds-input" value="{!e_mail}"/></div>
+        </div>
+        <div class="row">
+            <div class="cell"><label for="fn">First Name </label></div>
+            <div class="cell"><apex:inputText id="fn" styleClass="slds-input" value="{!fn}"/></div>
+        </div>
+        <div class="row">
+            <div class="cell"><label for="ln">Last Name </label><abbr class="slds-required" title="required">* </abbr></div>
+            <div class="cell"><apex:inputText id="ln" styleClass="slds-input" value="{!ln}"/></div>
+        </div>
+        </div>
+        </div>
+        
+        <div class="content" id="product">
+        <div class="table">
+        <div class="row">
+            <div class="cell">Product Name</div>
+            <div class="cell">{!product.Name}</div>
+        </div>
+        <div class="row">
+            <div class="cell">Cost</div>
+            <div class="cell">{!product.Unit_Price__c}</div>
+        </div>
+        <div class="row">
+            <div class="cell"><label for="count">Unit Count</label></div>
+            <div class="cell"><apex:inputText id="count" styleClass="slds-input" value="{!count}" />
+            <br/><span id="errorname">Unit count must be from 0 to {!product.Units_Availble__c}</span>
+            </div>
+        </div>
+         <div class="row">
+            <div class="cell">Total Amount</div>
+            <div class="cell"><apex:outputText rendered="true">{!total}</apex:outputText></div>
+        </div>
+        </div>
+        </div>
+    </div>
+    </apex:pageBlock>
+    <div class="footer">
+       <apex:commandButton action="{!back}" styleClass="slds-button slds-button_neutral" value="ToShopping"/>
+        <apex:commandButton action="{!buy}" styleClass="slds-button slds-button--brand" value="Buy" reRender="buyform,message"/>
+    </div>
+    </apex:form>
+</apex:page>

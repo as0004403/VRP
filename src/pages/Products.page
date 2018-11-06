@@ -1,0 +1,18 @@
+<apex:page controller="Product_list" >
+<apex:slds />
+<style>
+    a{text-decoration:none;}
+</style>
+<apex:form >
+    <apex:pageBlock title="Product List">
+        <apex:pageBlockTable value="{!productionInfo}" var="prod">
+            <apex:column headerValue="IMAGE"><apex:image url="{!prod.imgURL}" width="200px" height="200px"/></apex:column>
+            <apex:column headerValue=""><a href="{!prod.Info}" style="color:MediumBlue" target="_blank">{!prod.Prod.Name}</a> </apex:column>
+            <apex:column headerValue="TITLE" value="{!prod.Prod.chrct__c}"/>>
+            <apex:column headerValue="DESCRIPTION">{!prod.descr}<a href="{!prod.Info}" style="color:MediumBlue" target="_blank"> {!prod.more}</a></apex:column>
+            <apex:column headerValue="COST" value="{!prod.Prod.Unit_Price__c}"/>>
+            <apex:column headerValue="" ><input type="button" value="Buy" class="slds-button slds-button_brand" onClick='location.href="{!prod.buy}"'/></apex:column>
+        </apex:pageBlockTable>>
+    </apex:pageBlock>>
+</apex:form>>
+</apex:page>
